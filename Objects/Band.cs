@@ -12,7 +12,7 @@ namespace BandTracker
     private string _name;
 
     //constructor (id set = 0 the same in Sql)
-    public Venue(string name, int id = 0);
+    public Band(string name, int id = 0)
     {
       _id = id;
       _name = name;
@@ -31,27 +31,6 @@ namespace BandTracker
       _name = newName;
     }
 
-    //Override
-    public override bool Equals(System.Object otherBand)
-    {
-      if (!(otherBand is Band))
-      {
-        return false;
-      }
-      else
-      {
-        Band newBand = (Band) otherBand;
-        bool idEquality = this.GetId() == newBand.GetId();
-        bool nameEquality = this.GetName() == newBand.GetName();
-
-        return (idEquality && nameEquality);
-      }
-    }
-    //GetHashCode
-    public void GetHashCode()
-    {
-      return this.Getlocation().GetHashCode();
-    }
 
     //GetAll()
     public static List<Band> GetAll()
@@ -82,4 +61,26 @@ namespace BandTracker
         conn.Close();
       }
     }
+    //Override
+    public override bool Equals(System.Object otherBand)
+    {
+      if (!(otherBand is Band))
+      {
+        return false;
+      }
+      else
+      {
+        Band newBand = (Band) otherBand;
+        bool idEquality = this.GetId() == newBand.GetId();
+        bool nameEquality = this.GetName() == newBand.GetName();
+
+        return (idEquality && nameEquality);
+      }
+    }
+    //GetHashCode
+    public override int GetHashCode()
+    {
+      return this.GetName().GetHashCode();
+    }
   }
+}

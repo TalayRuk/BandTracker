@@ -33,3 +33,5 @@ namespace BandTracker
       //Assert
       Assert.Equal(band1, band2);
     }
+  }
+}    

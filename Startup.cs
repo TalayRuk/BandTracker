@@ -52,3 +52,4 @@ namespace BandTracker
     //Integrated Security sets the security of the database access to the Windows user that is currently logged in.
     public static string ConnectionString = ""+dataSource+";Initial Catalog="+databaseName+";Integrated Security=SSPI;";
   }
+}  

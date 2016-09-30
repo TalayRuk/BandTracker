@@ -13,3 +13,7 @@ namespace BandTracker
       Get["/"] = _ => {
         return View["index.cshtml"];
       };
+
+    }
+  }
+}    

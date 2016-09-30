@@ -34,3 +34,5 @@ namespace BandTracker
       //Assert
       Assert.Equal(venue1, venue2);
     }
+  }
+}
