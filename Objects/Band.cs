@@ -47,3 +47,39 @@ namespace BandTracker
         return (idEquality && nameEquality);
       }
     }
+    //GetHashCode
+    public void GetHashCode()
+    {
+      return this.Getlocation().GetHashCode();
+    }
+
+    //GetAll()
+    public static List<Band> GetAll()
+    {
+      List<Band> bandLists = new List<Band> {};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands;", conn);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+
+        Band newBand = new Band(name, id);
+        bandLists.Add(newBand);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+  }

@@ -58,4 +58,45 @@ namespace BandTracker
 
         return (idEquality && locationEquality && showTimeEquality);
       }
+      //GetHashCode
+      public void GetHashCode()
+      {
+        return this.Getlocation().GetHashCode();
+      }
+
+      //GetAll()
+      public static List<Venue> GetAll()
+      {
+        List<Venue> listVenues = new List<Venue> {};
+        SqlConnection conn = DB.Connection();
+        conn.Open();
+
+        SqlCommand cmd = new SqlCommand("SELECT * FROM venues;", conn);
+
+        SqlDataReader rdr = cmd.ExecuteReader();
+
+        int id = 0;
+        string location = null;
+        DateTime showTime = null;
+
+        while (rdr.Read())
+        {
+          id = rdr.GetInt32(0);
+          location = rdr.GetString(1);
+          showTime = rdr.GetDateTime(2);
+
+          Venue newVenue = new Venue(location, showTime, id);
+          listVenues.Add(newVenue);
+        }
+        if (rdr != null)
+        {
+          rdr.Close();
+        }
+        if (conn != null)
+        {
+          conn.Close();
+        }
+
+        retrun listVenues;
+      }
     }

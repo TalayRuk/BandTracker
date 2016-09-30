@@ -22,7 +22,7 @@ _* Allow a user to create Bands that have played at a Venue.
 | ------------- |:-------------:| -----:|
 |GetAll() return all rows present in database |2 band's instances | list containing 2 bands
 |GetAll().Count return Number of rows in database | no input | database empty
-|Override bool Equal function return 2 same inputs with different Id | 2 same bands'name instances |  2 bands' instances that have same name
+|Override bool Equals() and GetHashCode() return 2 same inputs with different Id | 2 same bands'name instances |  2 bands' instances that have same name
 |Save() return input save to the list | a new band instance | list containing the new band
 |Save() and GetId() return instance's Id that saved to the list | new client instance.Save() | return the same Id as the previously saved instance
 |Find() return specific row from database | RadioHead | found RadioHead
@@ -57,7 +57,7 @@ _* Allow a user to create Bands that have played at a Venue.
 
 \>CREATE TABLE bands (id INT IDENTITY (1,1), name VARCHAR(255), );
 
-\>CREATE TABLE venues (id INT IDENTITY (1,1), name VARCHAR(255), location VARCHAR(255));
+\>CREATE TABLE venues (id INT IDENTITY (1,1), location VARCHAR(255), show_time DATETIME);
 
 \>GO
 
