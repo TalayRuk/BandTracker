@@ -41,6 +41,29 @@ namespace BandTracker
       _showTime = newShowTime;
     }
 
+    //Override
+    public override bool Equals(System.Object otherVenue)
+    {
+      if (!(otherVenue is Venue))
+      {
+        return false;
+      }
+      else
+      {
+        Venue newVenue = (Venue) otherVenue;
+        bool idEquality = this.GetId() == newVenue.GetId();
+        bool locationEquality = this.GetLocation()
+        == newVenue.GetLocation();
+        bool showTimeEquality = this.GetShowTime() == newVenue.GetShowTime();
+
+        return (idEquality && locationEquality && showTimeEquality);
+      }
+    }
+    //GetHashCode
+    public override int GetHashCode()
+    {
+      return this.GetLocation().GetHashCode();
+    }
 
     //GetAll()
     public static List<Venue> GetAll()
@@ -80,28 +103,20 @@ namespace BandTracker
       return listVenues;
     }
 
-    //Override
-    public override bool Equals(System.Object otherVenue)
+    //DeleteAll
+    public void DeleteAll()
     {
-      if (!(otherVenue is Venue))
-      {
-        return false;
-      }
-      else
-      {
-        Venue newVenue = (Venue) otherVenue;
-        bool idEquality = this.GetId() == newVenue.GetId();
-        bool locationEquality = this.Getlocation()
-        == newVenue.Getlocation();
-        bool showTimeEquality = this.GetShowTime() == newVenue.GetShowTime();
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
-        return (idEquality && locationEquality && showTimeEquality);
+      SqlConnection cmd = new SqlCommand("DELETE FROM venues;", conn);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
       }
     }
-    //GetHashCode
-    public override int GetHashCode()
-    {
-      return this.GetLocation().GetHashCode();
-    }
+
   }
 }

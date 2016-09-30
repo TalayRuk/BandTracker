@@ -31,6 +31,27 @@ namespace BandTracker
       _name = newName;
     }
 
+    //Override
+    public override bool Equals(System.Object otherBand)
+    {
+      if (!(otherBand is Band))
+      {
+        return false;
+      }
+      else
+      {
+        Band newBand = (Band) otherBand;
+        bool idEquality = this.GetId() == newBand.GetId();
+        bool nameEquality = this.GetName() == newBand.GetName();
+
+        return (idEquality && nameEquality);
+      }
+    }
+    //GetHashCode
+    public override int GetHashCode()
+    {
+      return this.GetName().GetHashCode();
+    }
 
     //GetAll()
     public static List<Band> GetAll()
@@ -63,26 +84,20 @@ namespace BandTracker
 
       return bandLists;
     }
-    //Override
-    public override bool Equals(System.Object otherBand)
-    {
-      if (!(otherBand is Band))
-      {
-        return false;
-      }
-      else
-      {
-        Band newBand = (Band) otherBand;
-        bool idEquality = this.GetId() == newBand.GetId();
-        bool nameEquality = this.GetName() == newBand.GetName();
 
-        return (idEquality && nameEquality);
-      }
-    }
-    //GetHashCode
-    public override int GetHashCode()
+    //DeleteAll
+    public void DeleteAll()
     {
-      return this.GetName().GetHashCode();
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlConnection cmd = new SqlCommand("DELETE FROM venues;", conn);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
   }
 }
