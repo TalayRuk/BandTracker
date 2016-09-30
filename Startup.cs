@@ -6,8 +6,6 @@ using Nancy;
 using Nancy.Owin;
 using Nancy.ViewEngines.Razor;
 
-//Remember to:
-// - Update database connection information.
 
 namespace BandTracker
 {
