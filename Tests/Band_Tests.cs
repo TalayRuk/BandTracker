@@ -27,11 +27,17 @@ namespace BandTracker
     public void T2_OverrideEqual()
     {
       //Arrange, Act
-      Band band1 = Band("Oasis");
-      Band band2 = Band("Oasis");
+      Band band1 = new Band("Oasis");
+      Band band2 = new Band("Oasis");
 
       //Assert
       Assert.Equal(band1, band2);
     }
+
+    [Fact]
+    public void Dispose()
+    {
+      Band.DeleteAll();
+    }
   }
-}    
+}

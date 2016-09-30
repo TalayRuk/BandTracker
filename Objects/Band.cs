@@ -60,6 +60,8 @@ namespace BandTracker
       {
         conn.Close();
       }
+
+      return bandLists;
     }
     //Override
     public override bool Equals(System.Object otherBand)

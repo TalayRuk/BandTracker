@@ -27,12 +27,19 @@ namespace BandTracker
     public void T2_OverrideEqual()
     {
       //Arrange, Act
-      DateTime showTime = new DateTime(2016, 11, 11, 11, 00);
-      Venue venue1 = Venue("Seattle", showTime);
-      Venue venue2 = Venue("Seattle", showTime);
+      DateTime showTime = new DateTime(2016, 11, 11, 21, 30, 0);
+      Venue venue1 = new Venue("Seattle", showTime);
+      Venue venue2 = new Venue("Seattle", showTime);
 
       //Assert
       Assert.Equal(venue1, venue2);
+    }
+
+    [Fact]
+    public void Dispose()
+    {
+      Band.DeleteAll();
+      Venue.DeleteAll();
     }
   }
 }

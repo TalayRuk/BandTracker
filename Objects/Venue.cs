@@ -55,7 +55,9 @@ namespace BandTracker
 
       int id = 0;
       string location = null;
-      DateTime showTime = null;
+      DateTime showTime = DbNull.Value;
+      //dateTime is a value type, I can't put null in a value type.
+      //to send a null value to DB, use DbNull.Value
 
       while (rdr.Read())
       {
@@ -75,7 +77,7 @@ namespace BandTracker
         conn.Close();
       }
 
-      retrun listVenues;
+      return listVenues;
     }
 
     //Override
