@@ -6,11 +6,11 @@
 
 ## Description
 
-_* Allow a user to create Bands that have played at a Venue. 
-* Allow a venue can host many bands, and a band can play at many venues. 
+_* Allow a user to create Bands that have played at a Venue.
+* Allow a venue can host many bands, and a band can play at many venues.
 * Create a join table to store the bands_venues relationships.
 * Allow a user to view a single concert venue, list out all of the bands that have played at that venue.
-* Allow user to add a band to that venue. 
+* Allow user to add a band to that venue.
 * Create a method to get the bands who have played at a venue, and use a join statement in it.
 * When a user is viewing a single Band, list out all of the Venues that have hosted that band.
 * Allow the user to add a Venue to that Band by using a join statement._
@@ -27,9 +27,9 @@ _* Allow a user to create Bands that have played at a Venue.
 |Save() and GetId() return instance's Id that saved to the list | new client instance.Save() | return the same Id as the previously saved instance
 |Find() return specific row from database | RadioHead | found RadioHead
 |Many-to-many relationship set up = add join table
-|AddBand() to the Venue and GetBands() to return all bands for the venue | add new band to a venue | return new added band and all bands for that venue. 
+|AddBand() to the Venue and GetBands() to return all bands for the venue | add new band to a venue | return new added band and all bands for that venue.
 |AddVenue() to the band and GetVenues() to return all venues for the band | add new venue to a band | return new added venue and all venues for that band.
-|Update() to edit the name of the venue and return new name | new venue's name to replace existing one | return new edited venue's name. 
+|Update() to edit the name of the venue and return new name | new venue's name to replace existing one | return new edited venue's name.
 |Delete() to clear all venues from the database | 3 venue's instances | succesfully deleted all venues.
 |HomeModule add edit/Patch /delete route
 |*CRUD functionality for each class been built in Nancy
@@ -60,6 +60,8 @@ _* Allow a user to create Bands that have played at a Venue.
 \>CREATE TABLE venues (id INT IDENTITY (1,1), name VARCHAR(255), location VARCHAR(255));
 
 \>GO
+
+\> CREATE TABLE bands_venues (id INT IDENTITY (1,1), band_id INT, venue_id INT);
 
 #### To run the local server:
 
