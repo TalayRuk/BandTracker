@@ -22,3 +22,14 @@ namespace BandTracker
       //Assert
       Assert.Equal(0, result);
     }
+
+    [Fact]
+    public void T2_OverrideEqual()
+    {
+      //Arrange, Act
+      Band band1 = Band("Oasis");
+      Band band2 = Band("Oasis");
+
+      //Assert
+      Assert.Equal(band1, band2);
+    }
