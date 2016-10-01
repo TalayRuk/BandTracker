@@ -117,7 +117,7 @@ namespace BandTracker
       SqlDataReader rdr = cmd.ExecuteReader();
       while (rdr.Read())
       {
-        _id = rdr.GetInt32(0);
+        this._id = rdr.GetInt32(0);
       }
       if (rdr != null)
       {
@@ -137,8 +137,7 @@ namespace BandTracker
 
       SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
       cmd.ExecuteNonQuery();
-      conn.Close();
-
+      
       if (conn != null)
       {
         conn.Close();
