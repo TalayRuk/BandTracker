@@ -49,6 +49,23 @@ namespace BandTracker
       Assert.Equal(savedList, result);
     }
 
+    [Fact]
+    public void T4_SaveId()
+    {
+      //Arrange
+      Band bandOne = new Band("Oasis");
+
+      //Act
+      bandOne.Save();
+      Band savedBand = Band.GetAll()[0];
+
+      int result = savedBand.GetId();
+      int savedId = bandOne.GetId();
+
+      //Assert
+      Assert.Equal(savedId, result);
+    }
+
 
     public void Dispose()
     {
