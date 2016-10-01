@@ -45,7 +45,6 @@ namespace BandTracker
         return (idEquality && nameEquality);
       }
     }
-
     //GetHashCode
     public override int GetHashCode()
     {
@@ -241,7 +240,7 @@ namespace BandTracker
         conn.Close();
       }
     }
-    
+
     //DeleteAll
     public static void DeleteAll()
     {
