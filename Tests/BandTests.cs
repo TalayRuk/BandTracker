@@ -23,7 +23,36 @@ namespace BandTracker
       Assert.Equal(0, result);
     }
 
+    [Fact]
+    public void T2_OverrideEquals()
+    {
+      //Arrange, Act
+      Band bandOne = new Band("Oasis");
+      Band bandTwo = new Band("Oasis");
+
+      //Assert
+      Assert.Equal(bandOne, bandTwo);
+    }
+
+    [Fact]
+    public void T3_SaveBandToDb()
+    {
+      //Arrange
+      Band bandOne = new Band("Oasis");
+
+      //Act
+      bandOne.Save();
+      Band result = Band.GetAll();
+      List<Band> savedTest = new List<Band> {bandOne};
+
+      //Assert
+      Assert.Equal(savedTest, result);
+    }
+
+
     public void Dispose()
     {
-      band.DeleteAll();
+      Band.DeleteAll();
     }
+  }
+}
