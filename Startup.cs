@@ -1,13 +1,11 @@
-using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.AspNet.Builder;
 using Nancy;
 using Nancy.Owin;
 using Nancy.ViewEngines.Razor;
 
-
-namespace BandTracker
+namespace HairSalon
 {
   public class Startup
   {
@@ -42,14 +40,6 @@ namespace BandTracker
   }
   public static class DBConfiguration
   {
-    // Epicodus DataBase Information (Microsoft sequl server)
-    // Server type: Database Engine
-    // Server name: (localdb)\MSSQLLocalDB
-    // Authentication: Windows Authentication
-
-    public static string dataSource = "Data Source=(localdb)\\mssqllocaldb"; // Data Source identifies the server.
-    public static string databaseName = "band_tracker"; // Initial Catalog is the database name
-    //Integrated Security sets the security of the database access to the Windows user that is currently logged in.
-    public static string ConnectionString = ""+dataSource+";Initial Catalog="+databaseName+";Integrated Security=SSPI;";
+    public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon;Integrated Security=SSPI;";
   }
-}  
+}
