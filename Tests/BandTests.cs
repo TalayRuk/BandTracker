@@ -42,11 +42,11 @@ namespace BandTracker
 
       //Act
       bandOne.Save();
-      Band result = Band.GetAll();
-      List<Band> savedTest = new List<Band> {bandOne};
+      List<Band> result = Band.GetAll();
+      List<Band> savedList = new List<Band> {bandOne};
 
       //Assert
-      Assert.Equal(savedTest, result);
+      Assert.Equal(savedList, result);
     }
 
 
