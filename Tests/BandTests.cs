@@ -50,7 +50,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void T4_SaveId()
+    public void T4_SaveGetId()
     {
       //Arrange
       Band bandOne = new Band("Oasis");
@@ -81,51 +81,72 @@ namespace BandTracker
     }
 
     [Fact]
-    public void T6_AddVenue_ToBand()
+    public void T6_Update()
     {
       //Arrange
-      Band bandOne = new Band("Oasis");
+      string name1 = "Oasis";
+      Band bandOne = new Band("name1");
       bandOne.Save();
 
-      Venue testVenue = new Venue("Seattle", (2016, 12, 12, 21, 30, 00));
-      testVenue.Save();
-
-      Venue testVenue2 = new Venue("Krungthep", (2016, 11, 11, 23, 30, 00));
-      testVenue2.Save();
+      string name2 = "Talay";
 
       //Act
-      bandOne.AddVenue(testVenue);
-      bandOne.AddVenue(testVenue2);
+      bandOne.Update(name2);
 
-      List<Venue> result = bandOne.GetVenue();
-      List<Venue> testList = new List<Venue> {testVenue, testVenue2};
+      string result = bandOne.GetName();
 
       //Assert
-      Assert.Equal(testList, result);
+      Assert.Equal(name2, result);
     }
 
-    [Fact]
-    public void T7_GetVenues_ReturnAllVenues()
-    {
-      //Arrange
-      Band bandOne = new Band("Oasis");
-      bandOne.Save();
-
-      Venue testVenue = new Venue("Seattle", (2016, 12, 12, 21, 30, 00));
-      testVenue.Save();
-
-      Venue testVenue2 = new Venue("Krungthep", (2016, 11, 11, 23, 30, 00));
-      testVenue2.Save();
-
-      //Act
-      bandOne.AddVenue(testVenue);
-
-      List<Venue> savedVenue = bandOne.GetVenues();
-      List<Venue> testList = new List<Venue> {testVenue};
-
-      //Assert
-      Assert.Equal(testList, savedVenue);
-    }
+    // [Fact]
+    // public void T7_AddVenue_ToBand()
+    // {
+    //   //Arrange
+    //   Band bandOne = new Band("Oasis");
+    //   bandOne.Save();
+    //
+    //   DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
+    //   Venue testVenue = new Venue("Seattle", showTime;
+    //   testVenue.Save();
+    //
+    //   Venue testVenue2 = new Venue("Krungthep", showtime);
+    //   testVenue2.Save();
+    //
+    //   //Act
+    //   bandOne.AddVenue(testVenue);
+    //   bandOne.AddVenue(testVenue2);
+    //
+    //   List<Venue> result = bandOne.GetVenue();
+    //   List<Venue> testList = new List<Venue> {testVenue, testVenue2};
+    //
+    //   //Assert
+    //   Assert.Equal(testList, result);
+    // }
+    //
+    // [Fact]
+    // public void T8_GetVenues_ReturnAllVenues()
+    // {
+    //   //Arrange
+    //   Band bandOne = new Band("Oasis");
+    //   bandOne.Save();
+    //
+    //   DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
+    //   Venue testVenue = new Venue("Seattle", showTime);
+    //   testVenue.Save();
+    //
+    //   Venue testVenue2 = new Venue("Krungthep", showTime);
+    //   testVenue2.Save();
+    //
+    //   //Act
+    //   bandOne.AddVenue(testVenue);
+    //
+    //   List<Venue> savedVenue = bandOne.GetVenues();
+    //   List<Venue> testList = new List<Venue> {testVenue};
+    //
+    //   //Assert
+    //   Assert.Equal(testList, savedVenue);
+    // }
 
     public void Dispose()
     {
