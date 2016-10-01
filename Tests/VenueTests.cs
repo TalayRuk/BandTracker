@@ -13,6 +13,44 @@ namespace BandTracker
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
     }
 
+    [Fact]
+    public void T1_GetAll_IsDatabaseEmpty()
+    {
+      //Arrange, Act
+      int result = Venue.GetAll().Count;
+
+      //Assert
+      Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void T2_OverrideEquals()
+    {
+      //Arrange, Act
+      DateTime showTime = new DateTime(2016, 12, 12, 23, 30,00)
+      Venue venue1 = new Venue("Seattle", showTime);
+      Venue venue2 = new Venue("Seattle", showTime);
+
+      //Assert
+      Assert.Equal(venue1, venue2);
+    }
+
+    [Fact]
+    public void T3_SaveVenueToDb()
+    {
+      //Arrange
+      DateTime showTime = new DateTime(2016, 12, 12, 23, 30,00)
+      Venue venue1 = new Venue("Seattle", showTime);
+
+      //Act
+      venue1.Save();
+      List<Venue> result = Venue.GetAll();
+      List<Venue> savedVenue = new List<Venue> {venue1};
+
+      //Assert
+      Assert.Equal(savedVenue, result);
+
+    }
 
 // [Fact]
 // public void T6_AddVenue_ToBand()
@@ -40,4 +78,4 @@ namespace BandTracker
       Band.DeleteAll();
     }
   }
-}    
+}
