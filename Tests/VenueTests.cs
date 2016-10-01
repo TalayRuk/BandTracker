@@ -33,3 +33,11 @@ namespace BandTracker
 //   Assert.Equal(bandOne, result);
 //
 // }
+
+    public void Dispose()
+    {
+      Venue.DeleteAll();
+      Band.DeleteAll();
+    }
+  }
+}    

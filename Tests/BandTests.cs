@@ -148,6 +148,30 @@ namespace BandTracker
     //   Assert.Equal(testList, savedVenue);
     // }
 
+    // [Fact]
+    // public void T9_DeleteOne()
+    // {
+    //   //Arrange
+    //   Band bandOne = new Band("Oasis");
+    //   Band bandTwo = new Band("Talay");
+    //   bandOne.Save();
+    //   bandTwo.Save();
+    //
+    //   Venue Venue1 = new Venue("Seattle");
+    //   Venue1.Save();
+    //
+    //   //Act
+    //   bandOne.AddVenue(Venue1);
+    //   bandTwo.DeleteOne();
+    //
+    //   List<Band> resultSavedVenueBands = Venue1.GetBands();
+    //   List<Band> listVenueBands = new List<Band>{};
+    //
+    //   //Assert
+    //   Assert.Equal(listVenueBands, resultSavedVenueBands);
+    //
+    // }
+
     public void Dispose()
     {
       Band.DeleteAll();
