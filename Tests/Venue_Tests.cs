@@ -36,6 +36,39 @@ namespace BandTracker
     }
 
     [Fact]
+    public void T3_SaveToDB()
+    {
+      //Arrange
+      DateTime showTime = new DateTime(2016, 11, 11, 21, 30, 0);
+      Venue venue1 = new Venue("Seattle", showTime);
+      venue1.Save();
+
+      //Act
+      List<Venue> result = Venue.GetAll();
+      List<Venue> savedList= new List<Venue> {venue1};
+
+      //Assert
+      Assert.Equal(savedList, result);
+    }
+
+    [Fact]
+    public void SaveToId()
+    {
+      //Arrange
+      DateTime showTime = new DateTime(2016, 11, 11, 21, 30, 0);
+      Venue venue1 = new Venue("Krungthep", showTime);
+      venue1.Save();
+
+      //Act
+      Venue saveVenue = Venue.GetAll()[0];
+
+      int result = saveVenue.GetId();
+      int testId = venue1.GetId();
+      //Assert
+      Assert.Equal(testId, result);
+    }
+
+    [Fact]
     public void Dispose()
     {
       Band.DeleteAll();

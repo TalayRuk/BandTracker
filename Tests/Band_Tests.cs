@@ -35,6 +35,38 @@ namespace BandTracker
     }
 
     [Fact]
+    public void T3_SaveBandToDb()
+    {
+      //Arrange
+      Band testBand = new Band("Oasis");
+      testBand.Save();
+
+      //Act
+      List<Band> result = Band.GetAll();
+      List<Band> savedList = new List<Band> {testBand};
+
+      //Assert
+      Assert.Equal(savedList, result);
+    }
+
+    [Fact]
+    public void T4_SaveToId()
+    {
+      //Arrange
+      Band testBand = new Band("Oasis");
+      testBand.Save();
+
+      //Act
+      Band savedBand = Band.GetAll()[0];
+
+      int result = saveBand.GetId();
+      int testId = testBand.GetId();
+
+      //Assert
+      Assert.Equal(testId, result);
+    }
+
+    [Fact]
     public void Dispose()
     {
       Band.DeleteAll();

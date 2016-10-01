@@ -76,17 +76,18 @@ namespace BandTracker
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      int id = 0;
-      string location = null;
-      DateTime showTime = 0;
+
+      // int id = 0;
+      // string location = null;
+      // DateTime showTime = DbNull.Value;
       //dateTime is a value type, I can't put null in a value type.
-      //to send a null value to DB, use DbNull.Value
+      //to send a null value?
 
       while (rdr.Read())
       {
-        id = rdr.GetInt32(0);
-        location = rdr.GetString(1);
-        showTime = rdr.GetDateTime(2);
+        int id = rdr.GetInt32(0);
+        string location = rdr.GetString(1);
+        DateTime showTime = rdr.GetDateTime(2);
 
         Venue newVenue = new Venue(location, showTime, id);
         listVenues.Add(newVenue);
@@ -101,6 +102,31 @@ namespace BandTracker
       }
 
       return listVenues;
+    }
+
+    //Save()
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO venues (location, show_time) OUTPUT INSERTED.id VALUES (@location, @showTime);", conn);
+      cmd.Parameters.Add(new SqlParameter("@location", this.GetLocation());
+      cmd.Parameters.Add(new SqlParameter("@showTime", this.GetShowTime()));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        _id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     //DeleteAll
