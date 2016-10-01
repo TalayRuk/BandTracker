@@ -111,7 +111,7 @@ namespace BandTracker
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("INSERT INTO venues (location, show_time) OUTPUT INSERTED.id VALUES (@location, @showTime);", conn);
-      cmd.Parameters.Add(new SqlParameter("@location", this.GetLocation());
+      cmd.Parameters.Add(new SqlParameter("@location", this.GetLocation()));
       cmd.Parameters.Add(new SqlParameter("@showTime", this.GetShowTime()));
 
       SqlDataReader rdr = cmd.ExecuteReader();
