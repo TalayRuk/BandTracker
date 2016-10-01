@@ -86,12 +86,12 @@ namespace BandTracker
     }
 
     //DeleteAll
-    public void DeleteAll()
+    public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlConnection cmd = new SqlCommand("DELETE FROM venues;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
       cmd.ExecuteNonQuery();
 
       if (conn != null)

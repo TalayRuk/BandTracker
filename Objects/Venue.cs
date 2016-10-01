@@ -78,7 +78,7 @@ namespace BandTracker
 
       int id = 0;
       string location = null;
-      DateTime showTime = DbNull.Value;
+      DateTime showTime = 0;
       //dateTime is a value type, I can't put null in a value type.
       //to send a null value to DB, use DbNull.Value
 
@@ -104,12 +104,12 @@ namespace BandTracker
     }
 
     //DeleteAll
-    public void DeleteAll()
+    public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlConnection cmd = new SqlCommand("DELETE FROM venues;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
       cmd.ExecuteNonQuery();
 
       if (conn != null)
