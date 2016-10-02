@@ -230,13 +230,13 @@ namespace BandTracker
 
     }
 
-    //Delete
-    public void DeleteOne()
+    //Delete Delete Venues from both venues table DB and JOIN table DB
+    public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId;DELETE FROM bands_venues WHERE venue_id = @VenueId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId;", conn);
 
       cmd.Parameters.Add(new SqlParameter("@VenueId", this.GetId()));
       cmd.ExecuteNonQuery();

@@ -149,27 +149,25 @@ namespace BandTracker
     }
 
     [Fact]
-    public void T9_DeleteOne()
+    public void T9_Delete_BandAssociationsFromDb()
     {
       //Arrange
-      Band bandOne = new Band("Oasis");
-      Band bandTwo = new Band("Talay");
-      bandOne.Save();
-      bandTwo.Save();
+      Venue testVenue = new Venue("Seattle");
+      testVenue.Save();
 
-      Venue Venue1 = new Venue("Seattle");
-      Venue1.Save();
+      string bandName1 = "Oasis";
+      Band testBand = new Band(bandName1);
+      testBand.Save();
 
       //Act
-      bandOne.AddVenue(Venue1);
-      bandTwo.DeleteOne();
+      testBand.AddVenue(testVenue);
+      testBand.Delete();
 
-      List<Band> resultSavedVenueBands = Venue1.GetBands();
-      List<Band> listVenueBands = new List<Band>{};
+      List<Band> resultVenueBands = testVenue.GetBands();//a;ways GetBandS**
+      List<Band> testVenueBands = new List<Band>{};
 
       //Assert
-      Assert.Equal(listVenueBands, resultSavedVenueBands);
-
+      Assert.Equal(testVenueBands, resultVenueBands);
     }
 
     public void Dispose()
