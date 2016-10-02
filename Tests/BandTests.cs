@@ -109,7 +109,6 @@ namespace BandTracker
       // DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
       Venue testVenue = new Venue("Seattle");
       testVenue.Save();
-
       Venue testVenue2 = new Venue("Krungthep");
       testVenue2.Save();
 
@@ -163,7 +162,7 @@ namespace BandTracker
       testBand.AddVenue(testVenue);
       testBand.Delete();
 
-      List<Band> resultVenueBands = testVenue.GetBands();//a;ways GetBandS**
+      List<Band> resultVenueBands = testVenue.GetBands();//a;ways GetBands**
       List<Band> testVenueBands = new List<Band>{};
 
       //Assert
@@ -173,6 +172,7 @@ namespace BandTracker
     public void Dispose()
     {
       Band.DeleteAll();
+      Venue.DeleteAll();
     }
   }
 }

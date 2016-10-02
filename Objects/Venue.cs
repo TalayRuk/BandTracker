@@ -182,9 +182,9 @@ namespace BandTracker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues(venue_id,band_id) VALUES(@VenueId,@BandId);",conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues(band_id, venue_id) VALUES(@bandId, @VenueId);",conn);
 
-      cmd.Parameters.Add(new SqlParameter("@venueId", this.GetId()));
+      cmd.Parameters.Add(new SqlParameter("@VenueId", this.GetId()));
       cmd.Parameters.Add(new SqlParameter("@BandId", newBand.GetId()));
       cmd.ExecuteNonQuery();
 
@@ -206,7 +206,7 @@ namespace BandTracker
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Band> bands = new List<Band>{};
+      List<Band> allBands = new List<Band>{};
 
       while(rdr.Read())
       {
@@ -214,7 +214,7 @@ namespace BandTracker
         string bandName = rdr.GetString(1);
 
         Band newBand = new Band(bandName, bandId);
-        bands.Add(newBand);
+        allBands.Add(newBand);
       }
 
       if (rdr != null)
@@ -226,8 +226,8 @@ namespace BandTracker
       {
           conn.Close();
       }
-        return bands;
 
+      return allBands;
     }
 
     //Delete Delete Venues from both venues table DB and JOIN table DB
