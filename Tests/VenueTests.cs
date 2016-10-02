@@ -144,7 +144,7 @@ namespace BandTracker
 
        List<Band> savedBand = venue1.GetBands();
        List<Band> testList = new List<Band> {testBand};
-
+      
        //Assert
        Assert.Equal(testList, savedBand);
     }

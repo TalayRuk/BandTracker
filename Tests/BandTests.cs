@@ -118,7 +118,8 @@ namespace BandTracker
 
       List<Venue> result = bandOne.GetVenues();
       List<Venue> testList = new List<Venue> {testVenue, testVenue2};
-
+      Console.WriteLine(result);
+      Console.WriteLine(testList);
       //Assert
       Assert.Equal(testList, result);
     }
@@ -127,22 +128,23 @@ namespace BandTracker
     public void T8_GetVenues_ReturnAllVenues()
     {
       //Arrange
-      Band bandOne = new Band("Oasis");
+      Band bandOne = new Band("Padam");
       bandOne.Save();
 
       // DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
-      Venue testVenue = new Venue("Seattle");
+      Venue testVenue = new Venue("Las Vegas");
       testVenue.Save();
 
-      Venue testVenue2 = new Venue("Krungthep");
+      Venue testVenue2 = new Venue("Tokyo");
       testVenue2.Save();
 
       //Act
       bandOne.AddVenue(testVenue);
-
+      Console.WriteLine(bandOne);
       List<Venue> savedVenue = bandOne.GetVenues();
       List<Venue> testList = new List<Venue> {testVenue};
-
+      Console.WriteLine(savedVenue);
+      Console.WriteLine(testList);
       //Assert
       Assert.Equal(testList, savedVenue);
     }
