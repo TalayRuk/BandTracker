@@ -175,10 +175,10 @@ namespace BandTracker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues(band_id, venue_id) VALUES(@BandId, @VenueId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues(band_id, venue_id) VALUES (@BandId, @VenueId);", conn);
 
-      cmd.Parameters.Add(new SqlParameter("@BandId", this.GetId()));
       cmd.Parameters.Add(new SqlParameter("@VenueId", newVenue.GetId())); //.GetId.ToString()-dosn't work!
+      cmd.Parameters.Add(new SqlParameter("@BandId", this.GetId()));
       cmd.ExecuteNonQuery();
 
       if (conn != null)
@@ -195,7 +195,7 @@ namespace BandTracker
 
       SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @BandId;", conn);
 
-      cmd.Parameters.Add(new SqlParameter("@BandId", this.GetId().ToString()));
+      cmd.Parameters.Add(new SqlParameter("@BandId", this.GetId()));//tried GetId().ToString() ..test still not working
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -207,8 +207,8 @@ namespace BandTracker
         string venueName = rdr.GetName(1);
         // DateTime venueShowTime = rdr.GetShowTime(2);
 
-        Venue newVenue = new Venue(venueName, venueId);
-        listVenues.Add(newVenue);
+        Venue foundVenue = new Venue(venueName, venueId);
+        listVenues.Add(foundVenue);
       }
 
       if (rdr != null)
