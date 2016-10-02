@@ -85,7 +85,7 @@ namespace BandTracker
     {
       //Arrange
       string name1 = "Oasis";
-      Band bandOne = new Band("name1");
+      Band bandOne = new Band(name1);
       bandOne.Save();
 
       string name2 = "Talay";
@@ -99,78 +99,78 @@ namespace BandTracker
       Assert.Equal(name2, result);
     }
 
-    // [Fact]
-    // public void T7_AddVenue_ToBand()
-    // {
-    //   //Arrange
-    //   Band bandOne = new Band("Oasis");
-    //   bandOne.Save();
-    //
-    //   DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
-    //   Venue testVenue = new Venue("Seattle", showTime;
-    //   testVenue.Save();
-    //
-    //   Venue testVenue2 = new Venue("Krungthep", showtime);
-    //   testVenue2.Save();
-    //
-    //   //Act
-    //   bandOne.AddVenue(testVenue);
-    //   bandOne.AddVenue(testVenue2);
-    //
-    //   List<Venue> result = bandOne.GetVenue();
-    //   List<Venue> testList = new List<Venue> {testVenue, testVenue2};
-    //
-    //   //Assert
-    //   Assert.Equal(testList, result);
-    // }
-    //
-    // [Fact]
-    // public void T8_GetVenues_ReturnAllVenues()
-    // {
-    //   //Arrange
-    //   Band bandOne = new Band("Oasis");
-    //   bandOne.Save();
-    //
-    //   DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
-    //   Venue testVenue = new Venue("Seattle", showTime);
-    //   testVenue.Save();
-    //
-    //   Venue testVenue2 = new Venue("Krungthep", showTime);
-    //   testVenue2.Save();
-    //
-    //   //Act
-    //   bandOne.AddVenue(testVenue);
-    //
-    //   List<Venue> savedVenue = bandOne.GetVenues();
-    //   List<Venue> testList = new List<Venue> {testVenue};
-    //
-    //   //Assert
-    //   Assert.Equal(testList, savedVenue);
-    // }
+    [Fact]
+    public void T7_AddVenue_ToBand()
+    {
+      //Arrange
+      Band bandOne = new Band("Oasis");
+      bandOne.Save();
 
-    // [Fact]
-    // public void T9_DeleteOne()
-    // {
-    //   //Arrange
-    //   Band bandOne = new Band("Oasis");
-    //   Band bandTwo = new Band("Talay");
-    //   bandOne.Save();
-    //   bandTwo.Save();
-    //
-    //   Venue Venue1 = new Venue("Seattle");
-    //   Venue1.Save();
-    //
-    //   //Act
-    //   bandOne.AddVenue(Venue1);
-    //   bandTwo.DeleteOne();
-    //
-    //   List<Band> resultSavedVenueBands = Venue1.GetBands();
-    //   List<Band> listVenueBands = new List<Band>{};
-    //
-    //   //Assert
-    //   Assert.Equal(listVenueBands, resultSavedVenueBands);
-    //
-    // }
+      // DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
+      Venue testVenue = new Venue("Seattle");
+      testVenue.Save();
+
+      Venue testVenue2 = new Venue("Krungthep");
+      testVenue2.Save();
+
+      //Act
+      bandOne.AddVenue(testVenue);
+      bandOne.AddVenue(testVenue2);
+
+      List<Venue> result = bandOne.GetVenues();
+      List<Venue> testList = new List<Venue> {testVenue, testVenue2};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
+    [Fact]
+    public void T8_GetVenues_ReturnAllVenues()
+    {
+      //Arrange
+      Band bandOne = new Band("Oasis");
+      bandOne.Save();
+
+      // DateTime showTime = new DateTime(2016, 12, 12, 21, 30, 00);
+      Venue testVenue = new Venue("Seattle");
+      testVenue.Save();
+
+      Venue testVenue2 = new Venue("Krungthep");
+      testVenue2.Save();
+
+      //Act
+      bandOne.AddVenue(testVenue);
+
+      List<Venue> savedVenue = bandOne.GetVenues();
+      List<Venue> testList = new List<Venue> {testVenue};
+
+      //Assert
+      Assert.Equal(testList, savedVenue);
+    }
+
+    [Fact]
+    public void T9_DeleteOne()
+    {
+      //Arrange
+      Band bandOne = new Band("Oasis");
+      Band bandTwo = new Band("Talay");
+      bandOne.Save();
+      bandTwo.Save();
+
+      Venue Venue1 = new Venue("Seattle");
+      Venue1.Save();
+
+      //Act
+      bandOne.AddVenue(Venue1);
+      bandTwo.DeleteOne();
+
+      List<Band> resultSavedVenueBands = Venue1.GetBands();
+      List<Band> listVenueBands = new List<Band>{};
+
+      //Assert
+      Assert.Equal(listVenueBands, resultSavedVenueBands);
+
+    }
 
     public void Dispose()
     {
