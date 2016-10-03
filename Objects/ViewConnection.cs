@@ -12,8 +12,8 @@ namespace BandTracker
       List<Band> BandList = Band.GetAll();
       List<Venue> VenueList = Venue.GetAll();
       Dictionary<string, object> model= new Dictionary<string, object>{};
-      model.Add("band", BandList);
-      model.Add("venue", VenueList);
+      model.Add("band", allBands);
+      model.Add("venue", allVenues);
       model.Add("name", name);
       return model;
     }
