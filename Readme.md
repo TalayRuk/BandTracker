@@ -57,7 +57,7 @@ _* Allow a user to create Bands that have played at a Venue.
 
 \>CREATE TABLE bands (id INT IDENTITY (1,1), name VARCHAR(255), );
 
-\>CREATE TABLE venues (id INT IDENTITY (1,1), location VARCHAR(255), show_time DATETIME);
+\>CREATE TABLE venues (id INT IDENTITY (1,1), name VARCHAR(255));
 
 \>GO
 
