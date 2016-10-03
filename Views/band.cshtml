@@ -1,20 +1,44 @@
-<h1>@Model["band"].GetName()</h1>
-
-
-@foreach (var venue in @Model["venue"])
-{
-
-<li><form action = "/delete-venue-from-band" method="post">@venue.GetName() | <input hidden name="band-venue-name" value="@venue.GetId()"><input hidden name="band-update" value='@Model["band"].GetId()'><button type="submit" name="remove">remove</button></form></li>
+@{
+  ViewBag.Title = "Home Page";
+  Layout = "~/Views/Shared/_myLayoutPage.cshtml";
 }
 
-<Form action = '/band/@Model["band"].GetId()/add-venue' method = 'post'>
-  <select  name="add-venue-to-band">
-    @foreach (var venue in @Model["allVenues"])
-    {
-      <option value = '@venue.GetId()'>@venue.GetName()</option>
-    }
-  </select>
-  <button type="submit" name="name">add venue to band</button>
-</form>
+<h2>@Model["band"].GetName() <span class="edit-link"><a href="/bands/update/@Model["band"].GetId()">Edit this Band</a><span></h2>
 
-<a href="/">home</a>
+
+  @if (Model["venuesPlayed"].Count == 0)
+  {
+    <p>This band has not played any venues.</p>
+  }
+  else
+  {
+    <ul>
+
+      @foreach (var venue in Model["venuesPlayed"])
+      {
+        <li>
+          <form action="/bands/@Model["band"].GetId()" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="venue_id" value="@venue.GetId()">
+            <a href="/venues/@venue.GetId()">@venue.GetName()</a> | <button type="submit">Remove this Venue</button>
+          </form>
+        </li>
+      }
+    </ul>
+  }
+
+  <h3>Add a venue to this band</h3>
+  <form action="/bands/@Model["band"].GetId()" method="post">
+    <input type="hidden" name="band_id" value="@Model["band"].GetId()">
+    <select name="add_new_venue">
+      @foreach(var venue in @Model["allVenues"])
+      {
+        <option value="@venue.GetId()">@venue.GetName()</option>
+      }
+    </select>
+    <button type="submit">Add this Venue</button>
+  </form>
+
+  <p><a href="/bands/delete/@Model["band"].GetId()">Delete this band</a></p>
+
+  <a href="/">Back to Main Page</a>
