@@ -85,7 +85,7 @@ namespace BandTracker
         Dictionary<string,object> model = new Dictionary<string,object>();
         Venue selectedVenue = Venue.Find(parameters.id);
         Band selectedBand = Band.Find(Request.Form["band_id"]);
-        selectedVenue.Delete(selectedBand);
+        selectedBand.Delete();
         List<Band> bandsAtVenue = selectedVenue.GetBands();
         List<Band> allBands = Band.GetAll();
         model.Add("venue", selectedVenue);
@@ -168,7 +168,7 @@ namespace BandTracker
         Dictionary<string,object> model = new Dictionary<string,object>();
         Venue selectedVenue = Venue.Find(Request.Form["venue_id"]);
         Band selectedBand = Band.Find(parameters.id);
-        selectedBand.Delete(selectedVenue);
+        selectedVenue.Delete();
         List<Venue> venuesPlayed = selectedBand.GetVenues();
         List<Venue> allVenues = Venue.GetAll();
         model.Add("band", selectedBand);
