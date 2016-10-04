@@ -171,6 +171,24 @@ namespace BandTracker
       Assert.Equal(testBandVenues, resultBandVenues);
     }
 
+    [Fact]
+    public void T11_DeleteBand()
+    {
+      //Arrange
+      Band testBand = new Band("Oasis");
+      testBand.Save();
+
+      Venue venue1 = new Venue("Seattle");
+      venue1.Save();
+
+      //Act
+      venue1.AddBand(testBand);
+      Venue.DeleteBand(testBand.GetId(), venue1.GetId() );
+      List<Band> results = venue1.GetBands();
+
+      //Assert
+      Assert.Equal(0, results.Count);
+    }
     public void Dispose()
     {
       Band.DeleteAll();

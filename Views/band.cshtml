@@ -1,44 +1,38 @@
-@{
-  ViewBag.Title = "Home Page";
-  Layout = "~/Views/Shared/_myLayoutPage.cshtml";
-}
-
-<h2>@Model["band"].GetName() <span class="edit-link"><a href="/bands/update/@Model["band"].GetId()">Edit this Band</a><span></h2>
-
-
-  @if (Model["venuesPlayed"].Count == 0)
+<link rel="stylesheet" href="../content/styles.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<body>
+  <h1>BAND TRACKER</h1>
+  <hr />
+  <h2>Band: @Model["band"].GetName()</h2>
+  <br>
+  @if (@Model["venues"].Count != 0)
   {
-    <p>This band has not played any venues.</p>
-  }
-  else
-  {
+    <h3>Here are the current venues for this band:</h3>
     <ul>
-
-      @foreach (var venue in Model["venuesPlayed"])
+      @foreach (var venue in @Model["venues"])
       {
-        <li>
-          <form action="/bands/@Model["band"].GetId()" method="post">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="venue_id" value="@venue.GetId()">
-            <a href="/venues/@venue.GetId()">@venue.GetName()</a> | <button type="submit">Remove this Venue</button>
-          </form>
-        </li>
+        <li>@venue.GetName() <a href="/bands/@Model["band"].GetId()/band_delete_venue/@venue.GetId()">Delete</a></li>
       }
     </ul>
   }
-
-  <h3>Add a venue to this band</h3>
-  <form action="/bands/@Model["band"].GetId()" method="post">
-    <input type="hidden" name="band_id" value="@Model["band"].GetId()">
-    <select name="add_new_venue">
-      @foreach(var venue in @Model["allVenues"])
+  else
+  {
+    <h4>No Current Venues!</h4>
+  }
+  <br>
+  <h3>Add a venue to this band:</h3>
+  <form action='/bands/add_venue' method='post'>
+    <input name='band-id' type='hidden' value='@Model["band"].GetId()'>
+    <select id='venue-id' name='venue-id' type='text'>
+      @foreach (var venue in @Model["allVenues"])
       {
-        <option value="@venue.GetId()">@venue.GetName()</option>
+        <option value='@venue.GetId()'>@venue.GetName()</option>
       }
     </select>
-    <button type="submit">Add this Venue</button>
+    <button type='submit'>Add</button>
   </form>
-
-  <p><a href="/bands/delete/@Model["band"].GetId()">Delete this band</a></p>
-
-  <a href="/">Back to Main Page</a>
+  <br>
+  <h2><a href="/bands/">View all bands</a></h2>
+  <br>
+  <h2><a href="/">Back to Main Page</a></h2>
+</body>

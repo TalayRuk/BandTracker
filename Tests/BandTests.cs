@@ -149,7 +149,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void T9_Delete_BandAssociationsFromDb()
+    public void T9_Delete_BandFromDb()
     {
       //Arrange
       Venue testVenue = new Venue("Seattle");

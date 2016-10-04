@@ -225,7 +225,7 @@ namespace BandTracker
 
       if(conn != null)
       {
-          conn.Close();
+        conn.Close();
       }
 
       return allBands;
@@ -240,6 +240,24 @@ namespace BandTracker
       SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId;", conn);
 
       cmd.Parameters.Add(new SqlParameter("@VenueId", this.GetId()));
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    //delete Band from Venue
+    public static void DeleteBand(int bandId, int venueId)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands_venues WHERE band_id = @BandId AND venue_id = @VenueId;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@VenueId", venueId));
+      cmd.Parameters.Add(new SqlParameter("@BandId", bandId));
       cmd.ExecuteNonQuery();
 
       if (conn != null)

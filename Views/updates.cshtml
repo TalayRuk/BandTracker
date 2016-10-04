@@ -1,28 +1,37 @@
-@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
-}
-
-<h2>Band Update @Model.GetName()</h2>
-
-<form action="/bands/@Model.GetId()" method="post">
-  <input type="hidden" name="_method" value="PATCH">
-  <label for="band_name">Edit Band Name: </label>
-  <input type="text" name="band_name" required>
-  <button type="submit" name="button">Edit this Band</button>
-</form>
-
-<a href="/bands/@Model.GetId()">Back to this band page</a>
-
-<hr>
-<h2>Venue Update @Model.GetName()</h2>
-
-<form action="/venues/@Model.GetId()" method="post">
-  <input type="hidden" name="_method" value="PATCH">
-  <label for="venue_name">Edit Venue Name: </label>
-  <input type="text" name="venue_name" required>
-  <button type="submit" name="button">Edit this Venue</button>
-</form>
-
-<a href="/venues/@Model.GetId()">Back to this venue page</a>
-<a href="/">Back to Main Page</a>
+<link rel="stylesheet" href="../content/styles.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<body>
+  <h1>BAND TRACKER</h1>
+  <hr />
+  <h2>UPDATE BANDS: </h2>
+  <br>
+  <h2>Edit Band: @Model.GetName()</h2>
+  <br>
+  <form action="/bands/@Model.GetId()/update" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for ="new-name">New Name:</label>
+    <input required name="new-name" type="text">
+    <button type="submit">Edit</button>
+  </form>
+  <hr>
+  <h2><a href="/bands/">View all bands</a></h2>
+  <br>
+  <hr />
+  <br>
+  <h2>UPDATE VENUE: </h2>
+  <br>
+  <h2>Edit Venue: @Model.GetName()</h2>
+  <br>
+  <form action="/venues/@Model.GetId()/update" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for ="new-name">New Name:</label>
+    <input required name="new-name" type="text">
+    <button type="submit">Edit</button>
+  </form>
+  <br>
+  <h2><a href="/venue_delete">Delete Band from Venues</a></h2>
+  <br>
+  <h2><a href="/venues/">View all venues</a></h2>
+  <br>
+  <h2><a href="/">Back to Main Page</a></h2>
+</body>

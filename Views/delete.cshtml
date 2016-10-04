@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="../content/styles.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<body>
+  <h1>BAND TRACKER</h1>
+  <hr />
+  <h2>Are you sure you want to delete <strong>@Model.GetName()</strong>?</h2>
+  <form action="/bands/@Model.GetId()/delete" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete</button>
+  </form>
+  <hr>
+  <h2><a href="/bands/">View all bands</a></h2>
+  <br>
+  <br>
+  <h2>Are you sure you want to delete <strong>@Model.GetName()</strong>?</h2>
+  <form action="/venues/@Model.GetId()/delete" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete</button>
+  </form>
+  <br>
+  <h2><a href="/venues">Return Home</a></h2>
+  <br>
+  <h2><a href="/">Back to Main Page</a></h2>
+</body>

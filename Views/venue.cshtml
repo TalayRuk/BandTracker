@@ -1,44 +1,40 @@
-@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
-}
-
-<h1>Venues</h1>
-<h2>@Model["venue"].GetName() <span class="edit-link"><a href="/venues/update/@Model["venue"].GetId()">Edit this Venue</a><span> </h2>
-
-@if (Model["venueBands"].Count == 0)
-{
-  <p>There are no bands associated with this venue.</p>
-}
-else
-{
-  <ul>
-  @foreach (var band in Model["venueBands"])
+<link rel="stylesheet" href="../content/styles.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<body>
+  <h1>BAND TRACKER</h1>
+  <hr />
+  <h2>Venue: @Model["venue"].GetName()</h2>
+  <br>
+  @if (@Model["bands"].Count != 0)
   {
-    <li>
-      <form action="/venues/@Model["venue"].GetId()" method="post">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="hidden" name="band_id" value="@band.GetId()">
-      <a href="/bands/@band.GetId()">@band.GetName()</a> | <button type="submit">Remove this Band</button>
-      </form>
-    </li>
+    <h4>Here are all the bands at this venue:</h4>
+    <ul>
+      @foreach (var band in @Model["bands"])
+      {
+        <li>@band.GetName() <a href="/venues/@Model["venue"].GetId()/venue_delete_band/@band.GetId()">Delete</a></li>
+      }
+    </ul>
   }
-  </ul>
-}
-
-<h3>Add a band to this venue</h3>
-<form action="/venues/@Model["venue"].GetId()" method="post">
-  <input type="hidden" name="venue_id" value="@Model["venue"].GetId()">
-  <select name="add_new_band">
-    @foreach(var band in @Model["allBands"])
-    {
-      <option value="@band.GetId()">@band.GetName()</option>
-    }
-  </select>
-  <button type="submit">Add this Band</button>
-</form>
-
-<p><a href="/venues/delete/@Model["venue"].GetId()">Delete this venue</a></p>
-
-
-<a href="/">Back to Main Page</a>
+  else
+  {
+    <p>No Current Bands!</p>
+  }
+  <br>
+  <h4>Add a band to this venue:</h4>
+  <form action='/venues/add_band' method='post'>
+    <input name='venue-id' type='hidden' value='@Model["venue"].GetId()'>
+    <label for='band-id'>Select a task</label>
+    <select id='band-id' name='band-id' type='text'>
+      @foreach (var band in @Model["allBands"])
+      {
+        <option value='@band.GetId()'>@band.GetName()</option>
+      }
+    </select>
+    <button type='submit'>Add</button>
+  </form>
+  <br>
+  <br>
+  <h2><a href="/venues/">View all venues</a></h2>
+  <br>
+  <h2><a href="/">Back to Main Page</a></h2>
+</body>
